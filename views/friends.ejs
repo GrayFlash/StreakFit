@@ -1,0 +1,55 @@
+<%- include('partials/header1'); -%> <%- include('partials/header2'); -%> <%-
+include('partials/navbar'); -%>
+
+<div class="row">
+  <% var url="/"+user_details._id+"/friendRequest"; %>
+  <form action="<%= url %>?_method=PUT" method="POST" accept-charset="utf-8">
+    <div class="mb-3">
+      <label for="email" class="form-label">Friend's ID</label>
+      <input
+        type="text"
+        name="id"
+        placeholder="Friend's ID"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <input type="submit" class="btn btn-primary" />
+    </div>
+  </form>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="content">
+        <div class="head">
+          <h5 class="mb-0">Your Friends</h5>
+          <p class="text-muted">Moj kar di</p>
+        </div>
+        <div class="canvas-wrapper">
+          <table class="table table-striped">
+            <thead class="success">
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% user_details.friends.forEach(function(details){ %>
+              <tr>
+                <td>
+                  <i class="flag-icon flag-icon-us"></i> <%= details.name%>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer1'); -%> <%- include('partials/footer2'); -%>
