@@ -150,10 +150,95 @@ app.get("/logout", function (req, res) {
 
 // ------------------------ Authentication Ends ------------------------------
 
-app.get("/", function (req, res) {
-  res.render("index");
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
-app.get("/model", function (req, res) {
-  res.render("pose_web");
+app.get("/:id/streak", isLoggedIn, (req, res) => {
+  User.findById(req.params.id, function (err, details) {
+    if (err) console.log(err);
+    else {
+      res.render("streak");
+    }
+  });
 });
+
+app.get("/:id/friends", isLoggedIn, function (req, res) {
+  User.findById(req.params.id)
+    .populate("friends")
+    .populate("pendingRequest")
+    .exec(function (err, user_details) {
+      if (err) console.log(err);
+      else {
+        res.render("friends", { user_details: user_details });
+      }
+    });
+});
+
+app.put("/:id/friendRequest", function (req, res) {
+  User.findById(req.params.id, function (err, user1) {
+    if (err) console.log(err);
+    else {
+      User.findById(req.body.id, function (err, user2) {
+        if (err) console.log(err);
+        else {
+          user2.pendingRequest.push(user1);
+          user2.save();
+          res.redirect("/" + req.params.id + "/friends");
+        }
+      });
+    }
+  });
+});
+
+app.get("/:id1/:id2/makeFriends", function (req, res) {
+  User.findById(req.params.id1, function (err, user1) {
+    if (err) console.log(err);
+    else {
+      User.findById(req.params.id2, async function (err, user2) {
+        if (err) console.log(err);
+        else {
+          user2.friends.push(user1);
+          user2.save();
+          user1.friends.push(user2);
+          user1.save();
+          User.findByIdAndUpdate(
+            req.params.id2,
+            { $pull: { pendingRequest: req.params.id1 } },
+            { safe: true, multi: true },
+            function (err, obj) {
+              res.redirect("/" + req.params.id2 + "/friends");
+            }
+          );
+        }
+      });
+    }
+  });
+});
+
+app.get("/:id/compete", isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, details) {
+    if (err) console.log(err);
+    else {
+      res.render("compete", {
+        call: call,
+      });
+    }
+  });
+});
+
+app.get("/:id/exercise", isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, details) {
+    if (err) console.log(err);
+    else {
+      res.render("exercise", {
+        call: call,
+      });
+    }
+  });
+});
+
+// const port = process.env.PORT || 3000;
+// app.listen(port, function () {
+//   console.log("Server Has Started!!");
+// });
