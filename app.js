@@ -102,3 +102,6 @@ app.get("/logout", function (req, res) {
 });
 
 // ------------------------ Authentication Ends ------------------------------
+
+app.get("/", function (req, res) {
+  res.render("index");
