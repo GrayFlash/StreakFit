@@ -59,9 +59,6 @@ function joinRoom() {
   peer = new Peer();
   peer.on("open", (id) => {
     console.log("Connected with Id: " + id);
-    // $.getScript("users.js", function () {
-    //   console.log(addUser(id));
-    // });
 
     getUserMedia(
       { video: true, audio: false },
@@ -78,9 +75,6 @@ function joinRoom() {
             setRemoteStream(stream, video);
           });
         });
-        // $.getScript("users.js", function () {
-        //   console.log(getUsersInRoom());
-        // });
 
         const calls = peer.call(room_id, stream);
         const video = document.createElement("video");
@@ -105,8 +99,6 @@ function setLocalStream(stream) {
 }
 
 function setRemoteStream(stream, video) {
-  // const video = document.createElement("video");
-  // let video = document.getElementById("remote-video");
   video.srcObject = stream;
   video.play();
   videoGrid.append(video);
