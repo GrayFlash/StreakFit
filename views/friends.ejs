@@ -50,6 +50,46 @@ include('partials/navbar'); -%>
       </div>
     </div>
   </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="content">
+        <div class="head">
+          <h5 class="mb-0">Pending Requests</h5>
+          <p class="text-muted">Your Friends</p>
+        </div>
+        <div class="canvas-wrapper">
+          <table class="table table-striped">
+            <thead class="success">
+              <tr>
+                <th>Name</th>
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% user_details.pendingRequest.forEach(function(details){ %>
+              <tr>
+                <td>
+                  <i class="flag-icon flag-icon-us"></i> <%= details.name%>
+                </td>
+                <td class="text-end">
+                  <% var
+                  url="/"+details._id+"/"+user_details._id+"/makeFriends";%>
+                  <a href="<%=url%>" class="btn btn-outline-info btn-rounded"
+                    ><i class="fas fa-check" style="color: forestgreen"></i
+                  ></a>
+                  <a href="" class="btn btn-outline-danger btn-rounded"
+                    ><i class="fas fa-trash"></i
+                  ></a>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%- include('partials/footer1'); -%> <%- include('partials/footer2'); -%>
