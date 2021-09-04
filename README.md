@@ -48,7 +48,7 @@ The tech stacks will include:
 
 * [ ] integrating multiple streams
 
-* [ ] basic website layout design
+* [x] basic website layout design
 
 * [x] user authentication
 
