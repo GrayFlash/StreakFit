@@ -37,3 +37,19 @@ The tech stacks will include:
 * Machine Learning
 
 * JavaScript
+
+## Tasks
+
+* [x] brief problem statement discussion
+
+* [ ] pose detection implementaion locally
+
+* [ ] video streaming on web
+
+* [ ] integrating multiple streams
+
+* [ ] basic website layout design
+
+* [ ] user authentication
+
+* [ ] dashboard for multiple users
