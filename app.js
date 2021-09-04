@@ -55,10 +55,6 @@ function isLoggedIn(req, res, next) {
   res.redirect("/login");
 }
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
 //------------------------   Authentication Routes  -------------------------
 
 app.get("/login", function (req, res) {
@@ -102,3 +98,7 @@ app.get("/logout", function (req, res) {
 });
 
 // ------------------------ Authentication Ends ------------------------------
+
+app.get("/", function (req, res) {
+  res.render("index");
+});
