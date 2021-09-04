@@ -60,13 +60,10 @@ video {
 }
 
 #local-video {
-  top: 60;
   width: 300;
   object-fit: cover;
   height: 250;
-  right: 15;
   background-color: #444444;
-  position: absolute;
 }
 
 .meet-controls-bar {
@@ -77,8 +74,21 @@ video {
   width: 100%;
 }
 
+.output_canvas {
+  width: 300;
+  object-fit: cover;
+  height: 250;
+  background-color: #444444;
+}
+
 #video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   grid-auto-rows: 300px;
+}
+
+.xyz {
+  top: 350;
+  left: 15;
+  position: absolute;
 }
