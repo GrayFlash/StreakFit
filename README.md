@@ -46,10 +46,14 @@ The tech stacks will include:
 
 * [x] video streaming on web
 
-* [ ] integrating multiple streams
+* [x] integrating multiple streams
 
 * [x] basic website layout design
 
 * [x] user authentication
 
 * [ ] dashboard for multiple users
+
+* [ ] integrating streams with pose detecting model in javascript
+
+* [ ] gamification of the idea
