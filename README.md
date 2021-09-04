@@ -22,38 +22,40 @@ Having a personal dashboard and page for solo training should also be a great ad
 
 Hopefully we are looking ahead for the following social impact:
 
-* People can track out their health easily.
+- People can track out their health easily.
 
-* Following up some basic exercise should not require a big setup or spending.
+- Following up some basic exercise should not require a big setup or spending.
 
-* Collaboration among peers and conducting those exercise sessions must become easier.
+- Collaboration among peers and conducting those exercise sessions must become easier.
 
-* Since it involves having it with peers, we hope that youth finds it more interesting and is drawn towards it.
+- Since it involves having it with peers, we hope that youth finds it more interesting and is drawn towards it.
 
 ## Tech Stack
 
 The tech stacks will include:
 
-* Machine Learning
+- Machine Learning
 
-* JavaScript
+- JavaScript
 
 ## Tasks
 
-* [x] brief problem statement discussion
+- [x] brief problem statement discussion
 
-* [x] pose detection implementaion locally
+- [x] pose detection implementaion locally
 
-* [x] video streaming on web
+- [x] video streaming on web
 
-* [x] integrating multiple streams
+- [x] integrating multiple streams
 
-* [x] basic website layout design
+- [x] basic website layout design
 
-* [x] user authentication
+- [x] user authentication
 
-* [ ] dashboard for multiple users
+- [ ] dashboard for multiple users
 
-* [ ] integrating streams with pose detecting model in javascript
+- [ ] integrating streams with pose detecting model in javascript
 
-* [ ] gamification of the idea
+- [ ] gamification of the idea
+
+- [ ] features like badges and incentives
