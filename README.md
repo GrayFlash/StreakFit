@@ -46,7 +46,7 @@ The tech stacks will include:
 
 * [x] video streaming on web
 
-* [] integrating multiple streams
+* [ ] integrating multiple streams
 
 * [x] basic website layout design
 
