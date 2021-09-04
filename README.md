@@ -42,11 +42,11 @@ The tech stacks will include:
 
 * [x] brief problem statement discussion
 
-* [ ] pose detection implementaion locally
+* [x] pose detection implementaion locally
 
-* [ ] video streaming on web
+* [x] video streaming on web
 
-* [ ] integrating multiple streams
+* [] integrating multiple streams
 
 * [x] basic website layout design
 
