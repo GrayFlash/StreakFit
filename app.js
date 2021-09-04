@@ -102,3 +102,7 @@ app.get("/logout", function (req, res) {
 app.get("/", function (req, res) {
   res.render("index");
 });
+
+app.get("/model", function (req, res) {
+  res.render("pose_web");
+});
