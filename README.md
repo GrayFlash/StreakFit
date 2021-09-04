@@ -50,6 +50,6 @@ The tech stacks will include:
 
 * [ ] basic website layout design
 
-* [ ] user authentication
+* [x] user authentication
 
 * [ ] dashboard for multiple users
