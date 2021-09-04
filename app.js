@@ -27,6 +27,57 @@ const server = app.listen(process.env.PORT || 3000, () =>
   console.log(`Server has started.`)
 );
 
+var call = Call.create();
+const users = {};
+
+const io = require("socket.io")(server);
+
+io.on("connection", (socket) => {
+  console.log("Socket Connected");
+  socket.on("new-user", ({ id, room, userName }) => {
+    users[socket.id] = { id, room };
+    call.addPeer(id, room);
+    var entry = new leaderBoard({
+      socketid: socket.id,
+      room,
+      name: userName,
+      exercise: "-",
+      score: "0",
+    });
+    entry.save();
+  });
+
+  socket.on("update_leaderboard", () => {
+    socket.broadcast.emit("leaderboard-updates");
+  });
+
+  socket.on("start_game", ({ games, exerciseTime, breakTime }) => {
+    socket.broadcast.emit("game_started", {
+      gamess: games,
+      exerciseTimes: exerciseTime,
+      breakTimes: breakTime,
+    });
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Socket Disonnected");
+
+    if (users[socket.id] != undefined) {
+      socket.broadcast.emit("user-disconnected", users[socket.id].id);
+      call.removePeer(users[socket.id].id, users[socket.id].room);
+    }
+    leaderBoard.findOneAndRemove(
+      { socketid: socket.id },
+      function (err, details) {
+        if (err) console.log(err);
+        else {
+          socket.broadcast.emit("leaderboard-updates");
+        }
+      }
+    );
+  });
+});
+
 //------------- Initialising passport ----------------
 
 app.use(
