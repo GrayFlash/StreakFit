@@ -37,8 +37,15 @@ Hopefully we are looking ahead for the following social impact:
 The tech stacks will include:
 
 - Machine Learning
-
-- JavaScript
+- Javascript
+- Node.js
+- MongoDB
+- socket.io
+- peer.js
+- Web RTC
+- mediapipe pose
+- Bootstrap
+- OpenCV
 
 ## Tasks
 
