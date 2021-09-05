@@ -17,6 +17,8 @@ Here people can join in through a private video chat room and exercise with thei
 Our pose detection algorithm shall take care of the counts and posture of the participants.
 There will also be a dashboard or leaderboard where we can see our scores with other folks.
 Having a personal dashboard and page for solo training should also be a great addition.
+So one can create a session with multiple people in the room.
+Once the timer Starts people can follow up the instruction on the exercise they have set.
 
 ## Possible Impact
 
@@ -59,3 +61,11 @@ The tech stacks will include:
 - [x] gamification of the idea
 
 - [x] features like badges and incentives
+
+## Future Scope:
+
+* add more functionalities and incentive based approach for gamification
+
+* instead of hard-coding each exercise, a ML based approach can be used for montoring the exercise being done currently. It will need a dataset with landmark point depicitng action that represents a particular pose.
+
+* Improving the UI/UX will also be a good todo for us, currently we bootstraped a simple UI for the demonstration and deployment purpose.
