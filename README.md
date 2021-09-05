@@ -1,4 +1,4 @@
-# fitness-pro
+# Streak Fit
 
 Project for HackJNU-2.0 (Track - Machine Learning & Health)
 
