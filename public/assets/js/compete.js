@@ -12,6 +12,17 @@ var currentPeer = null;
 const videoGrid = document.getElementById("video-grid");
 const socket = io();
 
+socket.on("user-disconnected", (userId) => {
+  console.log(userId);
+  const video = document.getElementById(userId);
+  video.remove();
+});
+
+socket.on("leaderboard-updates", () => {
+  console.log("Update");
+  leaderBoard();
+});
+
 var userName = "";
 var stage = "";
 var counter = 0;
@@ -151,6 +162,16 @@ function skipping() {
   document.getElementById("image").src = "/assets/img/3.png";
 }
 
+function situps() {
+  stage = "";
+  counter = 0;
+  flag = 0;
+  exercise = "situps";
+  document.getElementById("exerciseType").innerHTML = "Exercise : SIT UPS";
+  document.getElementById("result").innerHTML = "Count : 0";
+  document.getElementById("image").src = "/assets/img/13.png";
+}
+
 function complete() {
   stage = "";
   counter = 0;
@@ -200,6 +221,13 @@ function leaderBoard() {
         document.getElementById("winner").innerHTML = "Winner : " + winner;
       }
     });
+}
+
+function startgame() {
+  finished = false;
+  timer();
+  callGame(gamecount);
+  gamecount += 1;
 }
 
 function startgameHOST() {
