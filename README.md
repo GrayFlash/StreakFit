@@ -52,10 +52,10 @@ The tech stacks will include:
 
 - [x] user authentication
 
-- [ ] dashboard for multiple users
+- [x] dashboard for multiple users
 
-- [ ] integrating streams with pose detecting model in javascript
+- [x] integrating streams with pose detecting model in javascript
 
-- [ ] gamification of the idea
+- [x] gamification of the idea
 
-- [ ] features like badges and incentives
+- [x] features like badges and incentives
