@@ -7,8 +7,15 @@ const User = require("./models/user");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 const methodOverride = require("method-override");
+const Call = require("./call");
+const leaderBoard = require("./models/leaderboard");
 const app = express();
 const cors = require("cors");
+// var ExpressPeerServer = require("peer").ExpressPeerServer;
+// var options = {
+//   debug: true,
+//   allow_discovery: true,
+// };
 
 mongoose.connect(
   "mongodb+srv://shankhanil007:12345@cluster0.azmz3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
@@ -23,9 +30,13 @@ app.use(express.static(__dirname + "/public"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// Video call connection
 const server = app.listen(process.env.PORT || 3000, () =>
   console.log(`Server has started.`)
 );
+
+// let peerServer = ExpressPeerServer(server, options);
+// app.use("/peerjs", peerServer);
 
 var call = Call.create();
 const users = {};
@@ -128,7 +139,7 @@ app.post("/signup", function (req, res) {
         console.log(err);
       }
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/");
+        res.redirect("/" + req.user._id + "/streak");
       });
     }
   );
@@ -140,7 +151,7 @@ app.post(
     failureRedirect: "/login",
   }),
   function (req, res) {
-    res.redirect("/");
+    res.redirect("/" + req.user._id + "/streak");
   }
 );
 app.get("/logout", function (req, res) {
@@ -158,7 +169,12 @@ app.get("/:id/streak", isLoggedIn, (req, res) => {
   User.findById(req.params.id, function (err, details) {
     if (err) console.log(err);
     else {
-      res.render("streak");
+      res.render("streak", {
+        name: details.name,
+        streak: details.streak,
+        points: details.points,
+        ranking: details.ranking,
+      });
     }
   });
 });
@@ -238,7 +254,22 @@ app.get("/:id/exercise", isLoggedIn, function (req, res) {
   });
 });
 
-// const port = process.env.PORT || 3000;
-// app.listen(port, function () {
-//   console.log("Server Has Started!!");
-// });
+app.get("/:id/leaderboard", function (req, res) {
+  leaderBoard.find({ room: req.params.id }, function (err, details) {
+    if (err) console.log(err);
+    else {
+      res.json(details);
+    }
+  });
+});
+
+app.get("/:id/updateScore/:score", function (req, res) {
+  leaderBoard.findOne({ socketid: req.params.id }, function (err, details) {
+    if (err) console.log(err);
+    else {
+      details.score = req.params.score;
+      details.save();
+      res.json("success");
+    }
+  });
+});
