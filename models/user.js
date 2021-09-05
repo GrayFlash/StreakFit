@@ -6,6 +6,21 @@ var UserSchema = new mongoose.Schema({
   password: String,
   name: String,
   phone: String,
+  streak: String,
+  points: String,
+  ranking: String,
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  pendingRequest: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 UserSchema.plugin(passportLocalMongoose);
